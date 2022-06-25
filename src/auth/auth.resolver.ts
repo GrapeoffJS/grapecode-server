@@ -20,7 +20,7 @@ export class AuthResolver {
 
     @Mutation(returns => UserEntity)
     async createUser(@Args('createUserData') createUserData: CreateUserInput) {
-        return await this.authService.signup(createUserData);
+        return await this.authService.register(createUserData);
     }
 
     @Mutation(returns => UserEntity)
