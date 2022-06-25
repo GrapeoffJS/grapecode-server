@@ -1,7 +1,6 @@
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import helmet from 'helmet';
 
 import { AppModule } from './app.module';
 
@@ -13,7 +12,6 @@ async function bootstrap() {
     const configService = app.get<ConfigService>(ConfigService);
 
     // Security
-    app.use(helmet());
     app.useGlobalPipes(
         new ValidationPipe({
             always: true,
@@ -23,14 +21,6 @@ async function bootstrap() {
             forbidNonWhitelisted: true,
         }),
     );
-
-    // Versioning
-    app.setGlobalPrefix('api');
-    app.enableVersioning({
-        defaultVersion: '1',
-        prefix: 'v',
-        type: VersioningType.URI,
-    });
 
     await app.listen(configService.get('PORT'));
 
