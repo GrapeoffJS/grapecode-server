@@ -1,0 +1,44 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateUserInput {
+  accountType: Float!
+  email: String!
+  login: String!
+  nickname: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input EmailConfirmationInput {
+  code: Float!
+  owner_id: String!
+}
+
+type Mutation {
+  confirmEmail(emailConfirmationData: EmailConfirmationInput!): UserEntity!
+  createUser(createUserData: CreateUserInput!): UserEntity!
+}
+
+type Query {
+  auth: UserEntity!
+}
+
+type UserEntity {
+  about: String!
+  accountType: Float!
+  created_at: DateTime!
+  email: String!
+  id: String!
+  isConfirmed: Boolean!
+  login: String!
+  nickname: String!
+  password: String!
+  status: String!
+  updated_at: DateTime!
+}
